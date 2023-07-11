@@ -17,9 +17,25 @@
 #include <linux/bsearch.h>
 #include <linux/dev_ril_bridge.h>
 #include "cam_sensor_mipi.h"
+#if defined(CONFIG_SEC_A52SXQ_PROJECT)
+#include "cam_sensor_adaptive_mipi_imx682.h"
+#elif defined(CONFIG_SEC_A73XQ_PROJECT)
+#include "cam_sensor_adaptive_mipi_s5khm6.h"
+#elif defined(CONFIG_SEC_M52XQ_PROJECT)
+#include "cam_sensor_adaptive_mipi_s5kgw3.h"
+#else
 #include "cam_sensor_adaptive_mipi_wide.h"
+#endif
+#if defined(CONFIG_SEC_A52SXQ_PROJECT) || defined(CONFIG_SEC_A73XQ_PROJECT) || defined(CONFIG_SEC_M52XQ_PROJECT)
+#include "cam_sensor_adaptive_mipi_imx258.h"
+#else
 #include "cam_sensor_adaptive_mipi_uw.h"
+#endif
+#if defined(CONFIG_SEC_A73XQ_PROJECT)
+#include "cam_sensor_adaptive_mipi_hi1336.h"
+#else
 #include "cam_sensor_adaptive_mipi_uw_dual.h"
+#endif
 #include "cam_sensor_adaptive_mipi_tele.h"
 #include "cam_sensor_adaptive_mipi_front.h"
 #include "cam_sensor_adaptive_mipi_front_top.h"
