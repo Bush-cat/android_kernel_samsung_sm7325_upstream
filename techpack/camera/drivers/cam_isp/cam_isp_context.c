@@ -4026,6 +4026,7 @@ static int __cam_isp_ctx_rdi_only_sof_in_top_state(
 	CAM_DBG(CAM_ISP, "next Substate[%s]",
 		__cam_isp_ctx_substate_val_to_type(
 		ctx_isp->substate_activated));
+	ctx_isp->last_sof_timestamp = ctx_isp->sof_timestamp_val;
 	return rc;
 }
 
@@ -4049,7 +4050,7 @@ static int __cam_isp_ctx_rdi_only_sof_in_applied_state(
 	CAM_DBG(CAM_ISP, "next Substate[%s]",
 		__cam_isp_ctx_substate_val_to_type(
 		ctx_isp->substate_activated));
-
+	ctx_isp->last_sof_timestamp = ctx_isp->sof_timestamp_val;
 	return 0;
 }
 
@@ -4156,6 +4157,7 @@ static int __cam_isp_ctx_rdi_only_sof_in_bubble_applied(
 		__cam_isp_ctx_substate_val_to_type(
 		ctx_isp->substate_activated));
 end:
+	ctx_isp->last_sof_timestamp = ctx_isp->sof_timestamp_val;
 	return 0;
 }
 
@@ -4195,7 +4197,7 @@ static int __cam_isp_ctx_rdi_only_sof_in_bubble_state(
 
 		if (ctx_isp->last_sof_timestamp ==
 			ctx_isp->sof_timestamp_val) {
-			CAM_DBG(CAM_ISP,
+			CAM_ERR_RATE_LIMIT(CAM_ISP,
 				"Tasklet delay detected! Bubble frame: %lld check skipped, sof_timestamp: %lld, ctx_id: %d",
 				ctx_isp->frame_id,
 				ctx_isp->sof_timestamp_val,
@@ -4227,7 +4229,7 @@ static int __cam_isp_ctx_rdi_only_sof_in_bubble_state(
 
 			if (last_cdm_done_req >= req->request_id) {
 				CAM_DBG(CAM_ISP,
-					"CDM callback detected for req: %lld, possible buf_done delay, waiting for buf_done",
+					"CDM callback detected for req: %lld, possible buf_done delay, or buf_done stuck",
 					req->request_id);
 				if (req_isp->num_fence_map_out ==
 					req_isp->num_deferred_acks) {
@@ -4239,24 +4241,18 @@ static int __cam_isp_ctx_rdi_only_sof_in_bubble_state(
 					__cam_isp_ctx_handle_buf_done_for_req_list(
 						ctx_isp, req);
 				}
-				goto end;
-			} else {
-				CAM_WARN(CAM_ISP,
-					"CDM callback not happened for req: %lld, possible CDM stuck or workqueue delay",
-					req->request_id);
-				req_isp->num_acked = 0;
-				req_isp->num_deferred_acks = 0;
-				req_isp->bubble_detected = false;
-				req_isp->cdm_reset_before_apply = true;
-				list_del_init(&req->list);
-				list_add(&req->list, &ctx->pending_req_list);
-				atomic_set(&ctx_isp->process_bubble, 0);
-				ctx_isp->active_req_cnt--;
-				CAM_DBG(CAM_REQ,
-					"Move active req: %lld to pending list(cnt = %d) [bubble re-apply],ctx %u",
-					req->request_id,
-					ctx_isp->active_req_cnt, ctx->ctx_id);
 			}
+			req_isp->num_acked = 0;
+			req_isp->bubble_detected = false;
+			req_isp->cdm_reset_before_apply = true;
+			list_del_init(&req->list);
+			list_add(&req->list, &ctx->pending_req_list);
+			atomic_set(&ctx_isp->process_bubble, 0);
+			ctx_isp->active_req_cnt--;
+			CAM_DBG(CAM_REQ,
+				"Move active req: %lld to pending list(cnt = %d) [bubble re-apply],ctx %u",
+				req->request_id,
+				ctx_isp->active_req_cnt, ctx->ctx_id);
 			goto end;
 		}
 	}

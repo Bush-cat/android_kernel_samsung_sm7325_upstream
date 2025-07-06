@@ -426,8 +426,13 @@ struct data_rate_settings_t data_rate_delta_table_1_2_3 = {
 							CSIPHY_DEFAULT_PARAMS},
 						{0x988, 0x05, 0x00,
 							CSIPHY_DEFAULT_PARAMS},
+#if defined(CONFIG_SEC_P3Q_PROJECT)
 						{0x980, 0x61, 0x00,
 							CSIPHY_DEFAULT_PARAMS},
+#else
+						{0x980, 0x60, 0x00,
+							CSIPHY_DEFAULT_PARAMS},
+#endif
 						{0x9B4, 0x04, 0x0A,
 							CSIPHY_DEFAULT_PARAMS},
 					},
@@ -439,8 +444,13 @@ struct data_rate_settings_t data_rate_delta_table_1_2_3 = {
 							CSIPHY_DEFAULT_PARAMS},
 						{0xA88, 0x05, 0x00,
 							CSIPHY_DEFAULT_PARAMS},
+#if defined(CONFIG_SEC_P3Q_PROJECT)
 						{0xA80, 0x61, 0x00,
 							CSIPHY_DEFAULT_PARAMS},
+#else
+						{0xA80, 0x60, 0x00,
+							CSIPHY_DEFAULT_PARAMS},
+#endif
 						{0xAB4, 0x04, 0x0A,
 							CSIPHY_DEFAULT_PARAMS},
 					},
@@ -452,8 +462,13 @@ struct data_rate_settings_t data_rate_delta_table_1_2_3 = {
 							CSIPHY_DEFAULT_PARAMS},
 						{0xB88, 0x05, 0x00,
 							CSIPHY_DEFAULT_PARAMS},
+#if defined(CONFIG_SEC_P3Q_PROJECT)
 						{0xB80, 0x61, 0x00,
 							CSIPHY_DEFAULT_PARAMS},
+#else
+						{0xB80, 0x60, 0x00,
+							CSIPHY_DEFAULT_PARAMS},
+#endif
 						{0xBB4, 0x04, 0x0A,
 							CSIPHY_DEFAULT_PARAMS},
 					},
