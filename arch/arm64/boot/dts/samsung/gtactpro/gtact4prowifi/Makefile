@@ -14,6 +14,16 @@ endef
 # YUPIK BASE DTB
 SEC_YUPIK_BASE_DTB := ../../../vendor/qcom/yupik.dtb
 
+# GTACT4PROWIFI EUR
+SEC_GTACT4PROWIFI_EUR_DTBO := \
+		gtact4prowifi_eur_open_w00_r00.dtbo \
+		gtact4prowifi_eur_open_w00_r01.dtbo \
+		gtact4prowifi_eur_open_w00_r02.dtbo \
+		gtact4prowifi_eur_open_w00_r04.dtbo
+
+$(eval $(call sec_dtbo_build, \
+		$(SEC_GTACT4PROWIFI_EUR_DTBO),$(CONFIG_MACH_GTACT4PROWIFI_EUR_OPEN),$(SEC_YUPIK_BASE_DTB)))
+
 always          := $(dtb-y)
 subdir-y        := $(dts-dirs)
 endif

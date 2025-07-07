@@ -14,6 +14,13 @@ endef
 # YUPIK BASE DTB
 SEC_YUPIK_BASE_DTB := ../../../vendor/qcom/yupik.dtb
 
+# XCOVERPRO2 EUR
+SEC_XCOVERPRO2_EUR_DTBO := \
+		xcoverpro2_eur_open_w00_r00.dtbo
+
+$(eval $(call sec_dtbo_build, \
+		$(SEC_XCOVERPRO2_EUR_DTBO),$(CONFIG_MACH_XCOVERPRO2_EUR_OPEN),$(SEC_YUPIK_BASE_DTB)))
+
 always          := $(dtb-y)
 subdir-y        := $(dts-dirs)
 endif

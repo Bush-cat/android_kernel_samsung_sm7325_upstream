@@ -14,6 +14,15 @@ endef
 # YUPIK BASE DTB
 SEC_YUPIK_BASE_DTB := ../../../vendor/qcom/yupik.dtb
 
+# GTS7FEWIFI EUR
+SEC_GTS7FEWIFI_EUR_DTBO := \
+		gts7fewifi_eur_open_w00_r00.dtbo \
+		gts7fewifi_eur_open_w00_r01.dtbo \
+		gts7fewifi_eur_open_w00_r02.dtbo
+
+$(eval $(call sec_dtbo_build, \
+		$(SEC_GTS7FEWIFI_EUR_DTBO),$(CONFIG_MACH_GTS7FEWIFI_EUR_OPEN),$(SEC_YUPIK_BASE_DTB)))
+
 always          := $(dtb-y)
 subdir-y        := $(dts-dirs)
 endif
