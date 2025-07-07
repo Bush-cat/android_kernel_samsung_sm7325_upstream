@@ -1,0 +1,104 @@
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&pm7325_gpios {
+	key_recent {
+		key_recent_default: key_recent_default {
+			pins = "gpio8";
+			function = "normal";
+			input-enable;
+			bias-pull-up;
+			power-source = <1>;
+		};
+	};
+
+	key_back {
+		key_back_default: key_back_default {
+			pins = "gpio9";
+			function = "normal";
+			input-enable;
+			bias-pull-up;
+			power-source = <1>;
+		};
+	};
+};
+
+&pm8350c_gpios {
+	key_home {
+		key_home_default: key_home_default {
+			pins = "gpio1";
+			function = "normal";
+			input-enable;
+			bias-pull-up;
+			power-source = <0>;
+		};
+	};
+
+	key_hot {
+		key_hot_default: key_hot_default {
+			pins = "gpio2";
+			function = "normal";
+			input-enable;
+			bias-pull-up;
+			power-source = <0>;
+		};
+	};
+};
+
+&gpio_keys {
+	compatible = "gpio-keys";
+	label = "gpio_keys";
+
+	pinctrl-names = "default";
+	pinctrl-0 = <&key_vol_up_default &key_back_default &key_recent_default 
+	&key_home_default &key_hot_default>;
+
+	recent_key {
+		label = "recent_key";
+		gpios = <&pm7325_gpios 8 GPIO_ACTIVE_LOW>;
+		linux,input-type = <1>;
+		linux,code = <254>;
+		gpio-key,wakeup;
+		debounce-interval = <15>;
+		linux,can-disable;
+	};
+
+	back_key {
+		label = "back_key";
+		gpios = <&pm7325_gpios 9 GPIO_ACTIVE_LOW>;
+		linux,input-type = <1>;
+		linux,code = <158>;
+		gpio-key,wakeup;
+		debounce-interval = <15>;
+		linux,can-disable;
+	};
+
+	home_key {
+		label = "home_key";
+		gpios = <&pm8350c_gpios 1 GPIO_ACTIVE_LOW>;
+		linux,input-type = <1>;
+		linux,code = <172>;
+		gpio-key,wakeup;
+		debounce-interval = <15>;
+		linux,can-disable;
+	};
+
+	hot_key {
+		label = "hot_key";
+		gpios = <&pm8350c_gpios 2 GPIO_ACTIVE_LOW>;
+		linux,input-type = <1>;
+		linux,code = <252>;
+		gpio-key,wakeup;
+		debounce-interval = <15>;
+		linux,can-disable;
+	};
+};

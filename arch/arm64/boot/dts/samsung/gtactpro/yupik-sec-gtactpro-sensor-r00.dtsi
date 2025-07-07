@@ -1,0 +1,82 @@
+/* Copyright (c) 2021, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&pm8350c_l12 {
+	regulator-min-microvolt = <1800000>;
+	regulator-max-microvolt = <1800000>;
+	qcom,init-voltage = <1800000>;
+	regulator-always-on;
+};
+&soc {
+	/* GRIP 1 */
+	i2c_16: i2c@16 { /* SW I2C */
+		status = "ok";
+
+		cell-index = <16>;
+		compatible = "i2c-gpio";
+		gpios = <&tlmm 8 0 /* sda */
+			 &tlmm 9 0 /* scl */
+		>;
+		pinctrl-names = "default", "init";
+		pinctrl-0 = <&grip1_ldo_init &grip1_int_active &grip1_i2c_active>;
+		pinctrl-1 = <&grip1_ldo_active &grip1_int_active &grip1_i2c_active>;
+
+		#i2c-gpio,delay-us = <2>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		a96t396@20 {
+			compatible = "a96t396";
+			reg = <0x20>;
+
+			interrupt-parent = <&tlmm>;
+			interrupts = <7 0>;
+
+			a96t396,irq_gpio = <&tlmm 7 0>;
+			a96t396,ldo_en = <&tlmm 63 0>;
+			a96t396,fw_path = "abov/a96t356_gtacpro2_main.bin";
+			a96t396,multi_use = <1>;
+			a96t396,firmup_cmd = <0x90>;
+			a96t396,unknown_ch_selection = <0x03>;
+		};
+	};
+	/* GRIP 2 */
+	i2c_17: i2c@17 { /* SW I2C */
+		status = "ok";
+
+		cell-index = <17>;
+		compatible = "i2c-gpio";
+		gpios = <&tlmm 60 0 /* sda */
+			 &tlmm 61 0 /* scl */
+		>;
+		pinctrl-names = "default", "init";
+		pinctrl-0 = <&grip2_ldo_init &grip2_int_active &grip2_i2c_active>;
+		pinctrl-1 = <&grip2_ldo_active &grip2_int_active &grip2_i2c_active>;
+
+		#i2c-gpio,delay-us = <2>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		a96t396_wifi@20 {
+			compatible = "a96t396_wifi";
+			reg = <0x20>;
+
+			interrupt-parent = <&tlmm>;
+			interrupts = <27 0>;
+
+			a96t396_wifi,irq_gpio = <&tlmm 27 0>;
+			a96t396_wifi,ldo_en = <&tlmm 104 0>;
+			a96t396_wifi,fw_path = "abov/a96t356_gtacpro2_wifi.bin";
+			a96t396_wifi,multi_use = <1>;
+			a96t396_wifi,firmup_cmd = <0x90>;
+			a96t396_wifi,unknown_ch_selection = <0x03>;
+		};
+	};
+};

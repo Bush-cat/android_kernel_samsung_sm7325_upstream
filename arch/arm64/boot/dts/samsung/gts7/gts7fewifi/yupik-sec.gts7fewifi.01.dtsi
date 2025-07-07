@@ -1,0 +1,33 @@
+/* Copyright (c) 2021, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "../../yupik-sec-common.dtsi"
+
+#include "../yupik-sec-gts7-common.dtsi"
+#include "../yupik-sec-gts7-pinctrl-common.dtsi"
+#include "../yupik-sec-gts7-audio-common.dtsi"
+#include "../yupik-sec-gts7-audio-pinctrl-common.dtsi"
+#include "../yupik-sec-gts7-sensor-common.dtsi"
+#include "../yupik-sec-gts7-sensor-pinctrl-common.dtsi"
+#include "../yupik-sec-gts7-displayport-common.dtsi"
+#include "yupik-sec-gts7fewifi-pm-common.dtsi"
+#include "y2pik-sec-gts7fewifi-camera-sensor-r00.dtsi"
+
+#include "yupik-sec-gts7fewifi-pinctrl-r01.dtsi"
+
+/ {
+	model = "Samsung GTS7FEWIFI PROJECT (board-id,01)";
+	qcom,msm-id = <475 0x10000>, <515 0x10000>;
+	qcom,board-id = <34 1>;
+	dtbo-version = <0>;
+};
+

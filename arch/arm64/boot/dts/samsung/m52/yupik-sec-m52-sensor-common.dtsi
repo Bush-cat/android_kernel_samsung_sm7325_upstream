@@ -1,0 +1,65 @@
+/* Copyright (c) 2021, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&pm8350c_l12 {
+	regulator-min-microvolt = <1800000>;
+	regulator-max-microvolt = <1800000>;
+	qcom,init-voltage = <1800000>;
+	regulator-always-on;
+};
+&soc {
+	i2c_17: i2c@17 { /* SW I2C */
+		status = "ok";
+
+		cell-index = <17>;
+		compatible = "i2c-gpio";
+		gpios = <&tlmm 8 0 /* sda */
+			 &tlmm 9 0 /* scl */
+		>;
+		i2c-gpio,delay-us = <2>;
+		address-cells = <1>;
+		size-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&grip_i2c_active>;
+
+		a96t3x6@20 {
+			compatible = "a96t3x6";
+			reg = <0x20>;
+			pinctrl-names = "default";
+			pinctrl-0 = <&grip_int_active>;
+
+			interrupt-parent = <&tlmm>;
+			interrupts = <11 0>;
+
+			a96t3x6,irq_gpio = <&tlmm 11 0>;
+			a96t3x6,ldo_en = <&tlmm 104 0>;
+			a96t3x6,fw_path = "abov/a96t356_m52xq.bin";
+			a96t3x6,firmup_cmd = <0x3b>;
+		};
+
+		a96t3x6_sub@21 {
+			compatible = "a96t3x6_sub";
+			reg = <0x21>;
+			pinctrl-names = "default";
+			pinctrl-0 = <&grip_sub_int_active>;
+
+			interrupt-parent = <&tlmm>;
+			interrupts = <7 0>;
+
+			a96t3x6,irq_gpio = <&tlmm 7 0>;
+			a96t3x6,ldo_en = <&tlmm 104 0>;
+			a96t3x6,fw_path = "abov/a96t356_m52xq_sub.bin";
+			a96t3x6,firmup_cmd = <0x3b>;
+		};
+	};
+};
+

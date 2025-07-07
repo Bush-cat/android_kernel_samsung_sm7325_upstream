@@ -1,0 +1,79 @@
+/* Copyright (c) 2019, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&tlmm {
+	grip2_i2c {
+		grip2_i2c_active: grip2_i2c_active {
+			grip2_i2c_active {
+				pins = "gpio8", "gpio9";
+				bias-disable;
+			};
+		};
+	};
+	grip1_i2c {
+		grip1_i2c_active: grip1_i2c_active {
+			grip1_i2c_active {
+				pins = "gpio60", "gpio61";
+				bias-disable;
+			};
+		};
+	};
+	grip2_int {
+		grip2_int_active: grip2_int_active {
+			grip2_int_active {
+				pins = "gpio7";
+				bias-disable;
+			};
+		};
+	};
+	grip1_int {
+		grip1_int_active: grip1_int_active {
+			grip1_int_active {
+				pins = "gpio34";
+				bias-disable;
+			};
+		};
+	};
+	grip2_ldo {
+		grip2_ldo_init: grip2_ldo_init {
+			grip2_ldo_init {
+				pins = "gpio104";
+				bias-pull-down;         /* PULL DOWN */
+				output-low;
+			};
+		};
+		grip2_ldo_active: grip2_ldo_active {
+			grip2_ldo_active {
+				pins = "gpio104";
+				bias-pull-down;         /* PULL DOWN */
+				output-high;
+			};
+		};
+	};
+
+	grip1_ldo {
+		grip1_ldo_init: grip1_ldo_init {
+			grip1_ldo_init {
+				pins = "gpio63";
+				bias-pull-down;         /* PULL DOWN */
+				output-low;
+			};
+		};
+		grip1_ldo_active: grip1_ldo_active {
+			grip1_ldo_active {
+				pins = "gpio63";
+				bias-pull-down;         /* PULL DOWN */
+				output-high;
+			};
+		};
+	};
+};

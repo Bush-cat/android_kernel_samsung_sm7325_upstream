@@ -1,0 +1,33 @@
+/* Copyright (c) 2019, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/* Please remove this code when you use it
+&reserved_memory {
+
+};
+
+&soc {
+
+};
+*/
+
+&i2c_17 {
+	sx9360-i2c@28 {
+		sx9360,proxthresh_reg = <0x22>;		/* threshold: 614 */
+		sx9360,hyst_reg = <0x15>;		/* hysteresis: small, closedeb: 2 samples, fardeb: 2 samples */
+		sx9360,regproxctrl3_reg = <0x0C>;	/* AVGPOSFILT: 1/256, AVGNEGFILT: 1/2 */
+	};
+};
+
+&removed_mem {
+	reg = <0x0 0xc0000000 0x0 0x6A00000>;
+};

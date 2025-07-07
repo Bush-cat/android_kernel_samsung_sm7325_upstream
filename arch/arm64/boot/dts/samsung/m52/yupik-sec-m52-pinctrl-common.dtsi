@@ -1,0 +1,84 @@
+/* Copyright (c) 2021, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&tlmm {
+	wakeup-disabled-gpios = <
+		0	/* CAM_PMIC_I2C_SDA_1P8 */
+		3	/* OCTA_ESD_DET */
+		4	/* SPK_AMP_SDA_1P8 */
+		8	/* GRIP2_SDA_1P8 */
+		11	/* RCAM1_LDO_EN */
+		12	/* IF_PMIC_SDA_1P8 */
+		15	/* RCAM3_LDO_EN */
+		16	/* AP_MCU_SDA_1P8 */
+		20	/* RCAM1_RST_N */
+		21	/* RCAM2_RST_N */
+		23	/* AP_UART_RXD */
+		24	/* NC */
+		25	/* NC */
+		28	/* BT_UART_CTS */
+		32	/* CC_SDA_1P8 */
+		34	/* NFC_ESE_EN */
+		35	/* BTP_RST_N */
+		36	/* NFC_SDA_1P8 */
+		40	/* NFC_FIRM */
+		41	/* NFC_IRQ */
+		43	/* NC */
+		44	/* OCTA_RST_N */
+		45	/* MCU_nRST */
+		47	/* OCTA_CON_DET */
+		48	/* NFC_ESE_MISO */
+		51	/* NFC_ESE_CS_N */
+		52	/* TSP_SDA_1P8 */
+		55	/* SPK_AMP_INT */
+		56	/* BTP_SPI_MISO */
+		59	/* BTP_SPI_CS_N */
+		63	/* SPK_AMP_EN */
+		68	/* FCAM_MCLK */
+		72	/* NC */
+		75	/* CAM_AF_EEP_I2C_SDA_1P8 */
+		77	/* RCAM3_RST_N */
+		78	/* RCAM4_RST_N */
+		79	/* FCAM_RST_N */
+		80	/* DISP_TE */
+		82	/* AP_USB_BOOT */
+		83	/* CODEC_RST_N */
+		90	/* NC */
+		93	/* NV */
+		95	/* BT_SLIMBUS_DATA */
+		101	/* NC */		
+		104	/* GRIP_LDO_EN */
+		112	/* NC */
+		116	/* SIM_DET */
+		121	/* NC */
+		123	/* NC */
+		127	/* CP_WLAN_COEX_RXD */
+		129	/* NC */
+		130	/* NC */
+		131	/* NC */
+		136	/* NC */
+		150	/* SPK_I2S3_BCLK */
+		151	/* SPK_I2S3_WS */
+		153	/* SPK_I2S3_DI */
+		155	/* NC */
+		156	/* NC */
+		157	/* NC */
+		159	/* 6AXIS_I3C_SDA_1P8 */
+		161	/* LIGHT_SDA_1P8 */
+		163	/* MAGNETIC_SDA_1P8 */
+		166	/* NC */
+		172	/* BLE_UART_RXD */
+		174	/* NC */
+	>;
+};
+
+

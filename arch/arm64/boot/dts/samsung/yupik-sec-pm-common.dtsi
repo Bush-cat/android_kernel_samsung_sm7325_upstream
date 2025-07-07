@@ -1,0 +1,65 @@
+/* Copyright (c) 2021, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
+
+&pm8008i_active {
+	/delete-property/ pins;
+	/delete-property/ function;
+	/delete-property/ bias-disable;
+	/delete-property/ output-high;
+	/delete-property/ power-source;
+};
+
+&pm8008j_active {
+	/delete-property/ pins;
+	/delete-property/ function;
+	/delete-property/ bias-disable;
+	/delete-property/ output-high;
+	/delete-property/ power-source;
+};
+
+&pm8008i_chip {
+	status = "disabled";
+};
+
+&pm8008i_ldo {
+	status = "disabled";
+};
+
+&pm8008j_chip {
+	status = "disabled";
+};
+
+&pm8008j_ldo {
+	status = "disabled";
+};
+
+&pm7325_s1 {
+	regulator-min-microvolt = <1856000>;
+};
+
+&apps_rsc {
+	rpmh-regulator-ldoc6 {
+		qcom,mode-threshold-currents = <0 10000>;
+	};
+};
+
+&pmk8350 {
+	pon_pbs@800 {
+		/delete-property/ status;
+	};
+};
+
+&spmi_debug_bus {
+    status = "disabled";
+};

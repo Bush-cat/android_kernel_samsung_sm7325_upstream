@@ -1,0 +1,60 @@
+/* Copyright (c) 2021, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "../../yupik-sec-common.dtsi"
+
+#include "../yupik-sec-xcover-common.dtsi"
+#include "../yupik-sec-xcover-pinctrl-common.dtsi"
+#include "../yupik-sec-xcover-audio-common.dtsi"
+#include "../yupik-sec-xcover-audio-pinctrl-common.dtsi"
+#include "../yupik-sec-xcover-sensor-common.dtsi"
+#include "../yupik-sec-xcover-sensor-pinctrl-common.dtsi"
+#include "./yupik-sec-xcoverpro2-pm-common.dtsi"
+#include "./yupik-sec-xcoverpro2-pinctrl-r00.dtsi"
+#include "./yupik-sec-xcoverpro2-svcled-common.dtsi"
+#include "./yupik-sec-xcoverpro2-camera-sensor-common.dtsi"
+#include "./yupik-sec-xcoverpro2-bluetooth-common.dtsi"
+
+/ {
+	model = "Samsung XCOVERPRO2 PROJECT (board-id,00)";
+	qcom,msm-id = <475 0x10000>, <515 0x10000>;
+	qcom,board-id = <34 0>;
+	dtbo-version = <0>;
+};
+
+&gpio_keys {
+	compatible = "gpio-keys";
+	label = "gpio_keys";
+
+	pinctrl-names = "default";
+	pinctrl-0 = <&key_vol_up_default &key_hot_default &key_emergency_default>;
+
+	hot_key {
+			label = "hot_key";
+			gpios = <&tlmm 25 GPIO_ACTIVE_LOW>;
+			linux,input-type = <1>;
+			linux,code = <252>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+			linux,can-disable;
+	};
+
+	emergency_key {
+			label = "emergency_key";
+			gpios = <&tlmm 24 GPIO_ACTIVE_LOW>;
+			linux,input-type = <1>;
+			linux,code = <0x2a0>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+			linux,can-disable;
+	};
+};

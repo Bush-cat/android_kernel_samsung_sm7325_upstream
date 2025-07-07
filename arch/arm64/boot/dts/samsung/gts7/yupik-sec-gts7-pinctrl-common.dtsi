@@ -1,0 +1,110 @@
+/* Copyright (c) 2021, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&tlmm {
+	wakeup-disabled-gpios = <
+		0	/* VOICE_SPI_MISO */
+		3	/* VOICE_SPI_SS_N */
+		4	/* AMP_SDA_1P8 */
+		8	/* GRIP2_SDA_1P8 */
+		11	/* RCAM_LDO_EN */
+		12	/* IF_PMIC_SDA_1P8 */
+		15	/* FCAM_LDO_EN */
+		16	/* MCU_SDA_1P8 */
+		18	/* CABLET_DET_WIFI1 */
+		19	/* CABLET_DET_WIFI2 */
+		20	/* RCAM_RST_N */
+		21	/* MCU_CONN */
+		23	/* AP_UART_RXD */
+		24	/* REDRIVER_SDA_1P8 */
+		25	/* REDRIVER_SCL_1P8 */
+		28	/* BT_UART_CTS */
+		32	/* CC_SDA_1P8 */
+		36	/* DC_SDA_1P8 */
+		40	/* LCD_SDA_1P8 */
+		41	/* LCD_SCL_1P8 */
+		44	/* LCD_RST_N */
+		45	/* MCU_NRST */
+		47	/* LCD_CON_DET */
+		48	/* NC */
+		52	/* PEN_SDA_1P8 */
+		55	/* AMP_INT_N */
+		56	/* TSP_SPI_MISO */
+		59	/* TSP_SPI_SS */
+		60	/* GRIP1_SDA_1P8 */
+		61	/* GRIP1_SCL_1P8 */
+		63	/* GRIP1_LDO_EN */
+		68	/* FCAM_MCLK */
+		72	/* NC */
+		75	/* CAM_AF_EEP_SDA_1P8 */
+		77	/* NC */
+		78	/* NC */
+		79	/* FCAM_RST_N */
+		80	/* LCD_VENDOR_CHECK */
+		82	/* AP_USB_BOOT */
+		83	/* VOICE_RST */
+		90	/* NC */
+		93	/* NC */
+		95	/* BT_SLIMBUS_DATA */
+		104	/* GRIP2_LDO_EN */
+		112	/* NC */
+		116	/* NC */
+		117	/* NC */
+		119	/* NC */
+		121	/* NC */
+		123	/* NC */
+		127	/* CP_WLAN_COEX_RXD */
+		129	/* SUB_DET */
+		130	/* NC */
+		131	/* NC */
+		136	/* NC */
+		140	/* USB_CC_DIR */
+		145	/* AMP_I2S_LRCK */
+		148	/* NC */
+		150	/* MAIN_MIC_CLK */
+		151	/* MAIN_MIC_DATA */
+		153	/* SUB_MIC_DATA */
+		155	/* NC */
+		156	/* 3RD_MIC_CLK */
+		157	/* 3RD_MIC_DATA */
+		158	/* NC */
+		159	/* 6AXIS_I3C_SDA_1P8 */
+		161	/* RGB2_SDA_1P8 */
+		163	/* MAGNETIC_RGB1_SDA_1P8 */
+		166	/* NC */
+		172	/* MCU_ACC_SCL_1P8 */
+		174	/* NC */
+	>;
+
+	rome_cable_default: rome_cable_default {
+		pins = "gpio18","gpio19";
+		bias-disable;
+		input-enable;
+	};
+	/* SE 6 pin mappings */
+	qupv3_se6_redriver_i2c_pins: qupv3_se6_redriver_i2c_pins {
+		qupv3_se6_redriver_i2c_active: qupv3_se6_redriver_i2c_active {
+			mux {
+				pins = "gpio24", "gpio25";
+				function = "qup06";
+			};
+
+			config {
+				pins = "gpio24", "gpio25";
+				drive-strength = <2>;
+				bias-disable; /* No PULL */
+			};
+		};
+	};
+};
+
+

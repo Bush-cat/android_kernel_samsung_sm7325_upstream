@@ -1,0 +1,64 @@
+/* Copyright (c) 2019, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&tlmm {
+	grip_i2c {
+		grip_i2c_active: grip_i2c_active {
+			mux {
+				pins = "gpio8", "gpio9";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio8", "gpio9";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+	};
+
+	grip_int_active: grip_int_active {
+		mux {
+			pins = "gpio11";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio11";
+			drive-strength = <2>;
+			bias-disable;
+		};
+	};
+	grip_sub_i2c {
+		grip_sub_i2c_active: grip_sub_i2c_active {
+			mux {
+				pins = "gpio8", "gpio9";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio8", "gpio9";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+	};
+
+	grip_sub_int_active: grip_sub_int_active {
+		mux {
+			pins = "gpio7";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio7";
+			drive-strength = <2>;
+			bias-disable;
+		};
+	};
+};

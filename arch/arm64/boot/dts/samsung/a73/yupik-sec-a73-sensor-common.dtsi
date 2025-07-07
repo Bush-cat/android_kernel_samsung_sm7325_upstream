@@ -1,0 +1,81 @@
+/* Copyright (c) 2021, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&pm8350c_l12 {
+	regulator-min-microvolt = <1800000>;
+	regulator-max-microvolt = <1800000>;
+	qcom,init-voltage = <1800000>;
+	regulator-always-on;
+};
+&soc {
+	i2c_17: i2c@17 { /* SW I2C */
+		status = "ok";
+
+		cell-index = <17>;
+		compatible = "i2c-gpio";
+		gpios = <&tlmm 8 0 /* sda */
+			 &tlmm 9 0 /* scl */
+		>;
+		i2c-gpio,delay-us = <2>;
+		address-cells = <1>;
+		size-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&grip_i2c>;
+
+		sx938x-i2c@28 {
+			compatible = "sx938x";
+			reg = <0x28>;
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&grip_int>;
+
+			interrupt-parent = <&tlmm>;
+			interrupts = <7 0>;
+
+			sx938x,ldo_en = <&tlmm 104 0>;
+			sx938x,nirq-gpio = <&tlmm 7 0>;
+			Semtech,reg-num = <24>; /* total registers number to initialize*/
+
+			sx938x,unknown_sel = <0x01>;
+
+			sx938x,irq_enable_reg = <0x0E>; //0x02
+			sx938x,irqcfg_reg = <0x00>;
+
+			sx938x,gnrl_ctrl0_reg = <0x03>;//0x10
+			sx938x,gnrl_ctrl1_reg = <0x00>;
+			sx938x,gnrl_ctrl2_reg = <0x32>;
+
+			sx938x,afe_ctrl1_reg = <0x00>; //0x21
+			sx938x,afe_param0_phr_reg = <0x0C>;
+			sx938x,afe_param1_phr_reg = <0x46>;
+			sx938x,afe_param0_phm_reg = <0x0F>;
+			sx938x,afe_param1_phm_reg = <0x18>;
+
+			sx938x,proxctrl0_phr_reg = <0x09>; //0x40
+			sx938x,proxctrl0_phm_reg = <0x0a>;
+			sx938x,proxctrl1_reg = <0x20>;
+			sx938x,proxctrl2_reg = <0x60>;
+			sx938x,proxctrl3_reg = <0x0d>;
+			sx938x,proxctrl4_reg = <0x25>;
+			sx938x,proxctrl5_reg = <0x22>;
+
+			sx938x,refcorr0_reg = <0x00>;//0x60
+			sx938x,refcorr1_reg	= <0x00>;
+
+			sx938x,usefilter0_reg = <0x00>; //0x70
+			sx938x,usefilter1_reg = <0x00>;
+			sx938x,usefilter2_reg = <0x00>;
+			sx938x,usefilter3_reg = <0x00>;
+			sx938x,usefilter4_reg = <0x00>;
+		};
+	};
+};
