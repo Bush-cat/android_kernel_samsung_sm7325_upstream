@@ -43,4 +43,6 @@ source "techpack/display/msm/samsung/A73_S6E3FC3_AMB667BV01/Kconfig" # ADDED BY 
 source "techpack/display/msm/samsung/S6E3HAB_AMB667AN01_A73/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
 source "techpack/display/msm/samsung/XCP2_NT36672C_PM6585JB2/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
 source "techpack/display/msm/samsung/GTACT4PRO_HX8279_TV101WUM/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
+source "techpack/display/msm/samsung/HX83121_PPC357DB11/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
+source "techpack/display/msm/samsung/FT8203_TS124QDM/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
 source "techpack/display/msm/samsung/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
