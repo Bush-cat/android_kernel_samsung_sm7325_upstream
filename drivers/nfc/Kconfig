@@ -90,6 +90,34 @@ config ESE_SECURE
 	  It is used by many services. eSE is fully controlled using SPI
 	  to communication
 
+config NFC_NXP_COMBINED
+	bool "NXP COMBINED driver Feature"
+	default n
+	help
+	  NXP Near Field Communication controller support.
+	  If this feature is enabled, sn2xx driver can support various ICs
+	  such as PN557, sn1xx and sn2xx.
+	  For one binary, this driver should be used.
+
+config NFC_SN2XX
+	bool "NXP SN2XX Feature"
+	default n
+	help
+	  NXP SN2XX Near Field Communication controller support
+	  This option enables device driver support for the NFC.
+	  It is used by many services. NFC is fully controlled using I2C
+	  to communicate the AP chip.
+
+config NFC_SN2XX_ESE_SUPPORT
+	tristate "Nxp secure element protocol driver (SPI) devices"
+	depends on SPI
+	help
+	  This enables the Secure Element driver for SNxxx based devices.
+	  If unsure, say N.
+	  This selects Secure Element support.
+	  If you want NFC support, you should say Y here and
+	  also to your specific host controller driver.
+
 config ESE_USE_TZ_API
         bool "use tz api"
         default n
@@ -194,15 +222,6 @@ config NFC_PN547_LDO_CONTROL
 	  Say Y here to compile support for NXP PN547 LDO CONTROL feature into the
 	  kernel.
 
-config SEC_NFC_LOGGER
-        bool "NFC logger"
-        default n
-        help
-          Enable NFC log.
-          NFC log will be recorded at proc folder.
-          but will not included at dumpstate log.
-          so need to copy this file to log folder.
-
 config SEC_NFC_LOGGER_ADD_ACPM_LOG
         bool "NFC logger: add acpm log"
         default n
@@ -254,3 +273,9 @@ config STAR_K250A
         help
           S.LSI k250a driver except ISO7816 protocol layer
           This driver provides support for S.LSI k250a product.
+
+config CLK_ACPM_INIT
+	bool "ACPM INIT"
+	default n
+	help
+	  ACPM INIT must be called to use CLK3 in S5910.

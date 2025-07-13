@@ -12,6 +12,8 @@ nfc_sec-$(CONFIG_NFC_PN547_ESE_SUPPORT)	+= p61.o
 nfc_sec-$(CONFIG_NFC_FEATURE_SN100U)	+= cold_reset.o
 nfc_sec-$(CONFIG_SEC_NFC_LOGGER)	+= nfc_logger/nfc_logger.o
 nfc_sec-$(CONFIG_NFC_PN547)		+= pn547.o
+nfc_sec-$(CONFIG_NFC_SN2XX_ESE_SUPPORT)	+= p73.o ese_reset.o
+nfc_sec-$(CONFIG_NFC_SN2XX)		+= common.o common_ese.o i2c_drv.o
 else
 obj-$(CONFIG_NFC_PN547)			+= pn547.o
 obj-$(CONFIG_NFC_PN547_ESE_SUPPORT)	+= p61.o
@@ -19,6 +21,11 @@ obj-$(CONFIG_NFC_FEATURE_SN100U)	+= cold_reset.o
 obj-$(CONFIG_SEC_NFC)			+= sec_nfc.o
 obj-$(CONFIG_ESE_P3_LSI)		+= ese_p3.o
 obj-$(CONFIG_SEC_NFC_LOGGER)		+= nfc_logger/nfc_logger.o
+obj-$(CONFIG_NFC_SN2XX)	+= nfc.o
+ifeq ($(CONFIG_SEC_XCOVERPRO2_PROJECT), y)
+nfc-objs			+= common.o common_ese.o i2c_drv.o
+endif
+obj-$(CONFIG_NFC_SN2XX_ESE_SUPPORT)	+= p73.o ese_reset.o
 endif
 ccflags-$(CONFIG_NFC_DEBUG) := -DDEBUG
 

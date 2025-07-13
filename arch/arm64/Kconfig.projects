@@ -10,3 +10,15 @@ config MACH_A73XQ_EUR_OPEN
 	help
 	  Support for Samsung A73XQ EUR OPEN device.
 
+config SEC_XCOVERPRO2_PROJECT
+	default n
+	bool "Samsung XCOVERPRO2 Project"
+	help
+	  Support for Samsung XCOVERPRO2 Project
+
+config MACH_XCOVERPRO2_EUR_OPEN
+	default n
+	bool "Samsung XCOVERPRO2 EUR OPEN"
+	help
+	  Support for Samsung XCOVERPRO2 EUR OPEN device.
+
