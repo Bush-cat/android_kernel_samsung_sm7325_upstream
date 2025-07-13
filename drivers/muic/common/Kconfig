@@ -36,17 +36,57 @@ config MUIC_CORE
 
 config MUIC_HV
 	bool "MUIC_HV"
-	depends on USE_MUIC || MUIC_UNIVERSAL
+	depends on USE_MUIC
 	default n
 	help
 	  If you say yes here you will get support for the AFC.
 
 config MUIC_SUPPORT_PDIC
-	bool "MUIC supports PDIC chip interface"
+	tristate "MUIC supports CCIC chip interface"
 	depends on USE_MUIC
 	default n
 	help
-	  If you say yes here you will get support for the PDIC chip.
+	  If you say yes here you will get support for the CCIC chip.
+
+config USE_SECOND_MUIC
+	bool "Using second MUIC"
+	depends on USE_MUIC
+	default n
+	help
+		If you say yes here you will get support for
+		for the second MUIC chip feature.
+
+config MUIC_UART_SWITCH
+	bool "UART SWITCH"
+	depends on USE_MUIC
+	default n
+	help
+	  If you say yes here you will get support for the SEC UART SWITCH chip.
+	  It needs additional uart select H/W and applied only to lsi.
+
+config MUIC_SUPPORT_UART_SEL
+	bool "MUIC supports uart selection"
+	depends on USE_MUIC
+	default n
+	help
+	  If you say yes here you will get support for the uart selection.
+	  It applied only to qc.
+
+config USE_DEDICATED_MUIC
+	bool "Using dedicated MUIC device driver"
+	depends on USE_MUIC
+	default n
+	help
+	  If you say yes here you will get support for
+	  Dedicated MUIC device driver.
+	  This is only for charge
+
+config MUIC_AFC_RETRY
+	bool "Using MUIC AFC retry"
+	depends on USE_MUIC
+	default n
+	help
+	  If you say yes here you will get support for MUIC AFC retry feature.
 
 config MUIC_SUPPORT_POWERMETER
 	bool "MUIC supports PM chip interface"
@@ -61,6 +101,16 @@ config MUIC_SYSFS
 	default n
 	help
 	  If you say yes here you will get support for the muic sysfs.
+
+config MUIC_COMMON_SYSFS
+	bool "Using muic sysfs Features"
+	depends on MUIC_NOTIFIER
+	default n
+	help
+	  If you say yes here you will get support for the muic sysfs.
+	  some ic drivers may have sysfs in own driver.
+	  But we recommend driver to use this common sysfs.
+	  new ic driver must use this feature.
 
 config MUIC_USE_MODULE_PARAM
 	bool "Using module param"
@@ -87,6 +137,22 @@ config HICCUP_CHARGER
 	help
 		If you say yes here you will get support for
 		for the hiccup charger feature.
+
+config HICCUP_CC_DISABLE
+	bool "Using HICCUP CC disable"
+	depends on USE_MUIC
+	default n
+	help
+		If you say yes here you will get support for
+		for the hiccup cc disable feature.
+
+config MUIC_LO_TA_LOW_CURRENT
+	bool "Using LO_TA_LOW_CURRENT"
+	depends on USE_MUIC
+	default n
+	help
+	  If you say yes here you will get support for
+		for the hiccup cc disable feature.
 
 config MUIC_SUPPORT_PRSWAP
 	bool "MUIC supports power role swap"
