@@ -205,6 +205,7 @@ msm_drm-$(CONFIG_PANEL_GTACT4PRO_HX8279_TV101WUM_WUXGA) += samsung/PMIC/ss_buck_
 
 msm_drm-$(CONFIG_PANEL_FT8203_TS124QDM_WQXGA) += samsung/FT8203_TS124QDM/ss_dsi_panel_FT8203_TS124QDM.o
 
+msm_drm-$(CONFIG_PANEL_S6E3FC3_AMS646YD01_LO_FHD) += samsung/S6E3FC3_AMS646YD01_LO/ss_dsi_panel_S6E3FC3_AMS646YD01_LO.o
 
 
 msm_drm-$(CONFIG_DISPLAY_SAMSUNG) += samsung/ss_dsi_panel_sysfs.o \
