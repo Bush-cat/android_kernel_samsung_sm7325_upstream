@@ -250,3 +250,5 @@ obj-y += battery/charger/sm5440_charger/ # ADDED BY LEGO AUTOMATICALLY: DO NOT S
 obj-y += input/touchscreen/focaltech/ft820x/ # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
 obj-y += input/touchscreen/himax/hx831xx/ # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
 obj-y += input/sec_input/stm32/ # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
+obj-y += kperfmon/ # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
+obj-y += battery/charger/pca9468_charger/ # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
